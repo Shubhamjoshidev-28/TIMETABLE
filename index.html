@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=980, user-scalable=yes, initial-scale=0.35, minimum-scale=0.2, maximum-scale=5.0">
     <title>Time-Table</title>
     <link rel="stylesheet" href="css/time-table.css">
 </head>
@@ -100,7 +100,7 @@
                   <!-- WEDNESDAY -->
                    <tr>
                      <th class="days">We</th>
-                     <td><strong>TECH</strong><br><small class="Faculty">LH 110</small><small class="Faculty">MS NAVISHA</small></td>
+                     <td><strong>TECH</strong><br><small class="lab">LH 110</small><small class="Faculty">MS NAVISHA</small></td>
                      <td><strong>ERP</strong><br><small class="Faculty">DR RUHIKA</small></td>
                      <td><strong>FLAT</strong><br><small class="Faculty">MS SARIKA</small></td>
                      <td><strong>VERBAL</strong><br><small class="Faculty">MS SHWETA</small></td>
@@ -111,7 +111,7 @@
                          <div>
                              <strong>PIP</strong>
                              <br>
-                             <small class="Faculty">MS SUKHDEEP SANDHU</small>
+                             <small class="Faculty">MS SUKHDEEP</small>
                          </div>
                          <br>
                          <div>
@@ -167,7 +167,7 @@
                              <div>
                                 <strong>PIP</strong>
                                 <br>
-                                <small class="Faculty">MS SUKHDEEP SANDHU</small>
+                                <small class="Faculty">MS SUKHDEEP</small>
                             </div>
                             <br>
                             <div>
@@ -220,5 +220,36 @@
     <div class="sign">
         <strong>by Shubhshy....</strong>
     </div>
+    <button id="landscape-btn" style="display:block; margin: 0 auto 10px auto; padding: 6px 14px; font-size: 13px; cursor: pointer; border-radius: 4px; border: 1px solid #333; background: #f0f0f0;">
+        Landscape
+    </button>
+    <script>
+        const landscapeBtn = document.getElementById('landscape-btn');
+        
+        landscapeBtn.addEventListener('click', async () => {
+          try {
+            if (!document.fullscreenElement) {
+              // Step 1: Request Fullscreen (required to lock orientation)
+              await document.documentElement.requestFullscreen();
+            
+              // Step 2: Lock orientation to landscape
+              if (screen.orientation && screen.orientation.lock) {
+                await screen.orientation.lock('landscape');
+              }
+              landscapeBtn.textContent = 'Exit Fullscreen';
+            } else {
+              await document.exitFullscreen();
+              if (screen.orientation && screen.orientation.unlock) {
+                screen.orientation.unlock();
+              }
+              landscapeBtn.textContent = '📱 Switch to Fullscreen Landscape';
+            }
+          } catch (err) {
+            console.warn("Orientation lock not supported on this device/browser:", err);
+            // Fallback: If device doesn't support the lock API, suggest physical rotation
+            alert("Please rotate your phone horizontally for landscape mode.");
+          }
+        });
+    </script>
 </body>
 </html>
