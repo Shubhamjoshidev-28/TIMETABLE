@@ -1,0 +1,265 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  background-color: #fff;
+  padding: 10px 15px;
+}
+
+/* ---------------- Top Header Banner ---------------- */
+header {
+  margin-bottom: 8px;
+}
+
+.cec-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  min-height: 50px;
+}
+
+.cec-logo img {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 56px;
+  object-fit: contain;
+}
+
+.cec-logo h1 {
+  font-size: 34px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+/* ---------------- Table Layout ---------------- */
+.time-table {
+  width: 100%;
+  overflow-x: auto;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 950px;
+  table-layout: fixed;
+  border: 1.5px solid #000;
+  text-align: center;
+  background: #fff;
+}
+
+th, td {
+  border: 1px solid #000;
+  padding: 0;
+  vertical-align: middle;
+}
+
+/* ---------------- Header Row (Timings & Periods) ---------------- */
+thead th {
+  height: 48px;
+  font-weight: normal;
+}
+
+thead th .time {
+  font-size: 10px;
+  font-weight: normal;
+  display: block;
+  margin-bottom: 2px;
+}
+
+thead th .period {
+  font-size: 18px;
+  font-weight: normal;
+}
+
+/* ---------------- Day Column (Mo, Tu, We, Th, Fr) ---------------- */
+tbody th.days {
+  width: 55px;
+  font-size: 32px;
+  font-weight: normal;
+}
+
+/* ---------------- Standard Cells (Single Subject) ---------------- */
+tbody td {
+  height: 86px;
+  position: relative;
+}
+
+tbody td > strong {
+  font-size: 20px;
+  font-weight: normal;
+  display: inline-block;
+}
+
+tbody td > small.Faculty {
+  position: absolute;
+  bottom: 2px;
+  right: 4px;
+  font-size: 9.5px;
+  line-height: 1;
+}
+
+tbody td > small.lab {
+  position: absolute;
+  bottom: 2px;
+  left: 4px;
+  font-size: 9.5px;
+  line-height: 1;
+}
+
+/* Hide raw <br> tags in cells so flex layout controls spacing */
+tbody td > br,
+tbody td div br {
+  display: none;
+}
+
+/* ---------------- Split Cells (5F1 / 5F2 & Split Periods) ---------------- */
+tbody td > div {
+  position: relative;
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 4px;
+}
+
+/* Horizontal black line separating the top and bottom batch */
+tbody td > div:first-of-type {
+  border-bottom: 1px solid #000;
+}
+
+tbody td div strong {
+  font-size: 16px;
+  font-weight: normal;
+}
+
+/* Batch label (5F1 / 5F2 / PIP / WT tag) in the top-right corner */
+tbody td div small.section {
+  position: absolute;
+  top: 2px;
+  right: 4px;
+  font-size: 9px;
+  font-weight: normal;
+}
+
+/* Lab room number in the bottom-left corner */
+tbody td div small.lab {
+  position: absolute;
+  bottom: 2px;
+  left: 4px;
+  font-size: 9.5px;
+  line-height: 1;
+}
+
+/* Teacher name in the bottom-right corner */
+tbody td div small.Faculty {
+  position: absolute;
+  bottom: 2px;
+  right: 4px;
+  font-size: 9.5px;
+  line-height: 1;
+}
+
+/* ------------------Signature-------------------- */
+.sign {
+  width: 100%;
+  min-width: 950px;
+  text-align: right;
+  padding: 6px 8px 12px 0;
+  box-sizing: border-box;
+}
+
+.sign strong {
+  display: inline-block;
+  font-size: 11px;
+  color: #333;
+  font-weight: bold;
+}
+
+/* for mobile landscape view  */
+@media screen and (max-width: 900px) and (orientation: portrait) {
+  html {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  body {
+    position: fixed;
+    top: 0;
+    left: 100vw;
+    width: 100vh;
+    height: 100vw;
+    transform: rotate(90deg);
+    transform-origin: top left;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 8px;
+    background: #fff;
+    box-sizing: border-box;
+  }
+
+  .time-table {
+    width: 100%;
+    overflow: visible;
+  }
+
+  table {
+    min-width: 850px;
+    width: 100%;
+  }
+
+  /* 1. Increase height slightly so split cells don't crush */
+  tbody td {
+    height: 80px;
+  }
+
+  tbody td > strong {
+    font-size: 15px;
+  }
+
+  /* 2. Scale down split-cell text and add spacing */
+  tbody td div strong {
+    font-size: 11px;
+    line-height: 1.1;
+    margin-bottom: 4px;
+  }
+
+  /* 3. Scale down corner labels so they don't collide with titles */
+  tbody td div small.lab,
+  tbody td div small.Faculty,
+  tbody td > small.Faculty,
+  tbody td > small.lab {
+    font-size: 8px;
+    bottom: 1px;
+  }
+
+  tbody td div small.section {
+    font-size: 7.5px;
+    top: 1px;
+  }
+
+  .cec-logo h1 {
+    font-size: 24px;
+  }
+
+  .cec-logo img {
+    height: 36px;
+  }
+
+  .sign {
+    min-width: 850px;
+    padding: 4px 8px 10px 0;
+  }
+
+  .sign strong {
+    font-size: 9.5px;
+  }
+}
